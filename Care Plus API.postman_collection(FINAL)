@@ -1,0 +1,1887 @@
+{
+  "info": {
+    "_postman_id": "75022f6f-4a0a-48b3-86d4-16c9b859fb72",
+    "name": "Care Plus API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49170932",
+    "_collection_link": "https://go.postman.co/collection/49170932-75022f6f-4a0a-48b3-86d4-16c9b859fb72?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "🔐 Auth",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.tokenJWT) {",
+                  "    pm.collectionVariables.set(\"token\", jsonData.tokenJWT);",
+                  "    console.log(\"Token salvo com sucesso!\");",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"login\":\"admin@careplus.com\",\"senha\":\"Admin@123\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Registrar Usuário",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"novo@careplus.com\",\"senha\":\"Senha@123\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/utils/registrar",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "utils",
+                "registrar"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"admin@careplus.com\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/usuarios/logout",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validar Sessão",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"admin@careplus.com\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/usuarios/validar-sessao",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "validar-sessao"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "👤 Usuários",
+      "item": [
+        {
+          "name": "Listar Todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/usuarios",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "usuarios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/usuarios/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por Email",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/usuarios/email/admin@careplus.com",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "email",
+                "admin@careplus.com"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Verificar Email",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/usuarios/verificar-email/admin@careplus.com",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "verificar-email",
+                "admin@careplus.com"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"usuario@careplus.com\",\"senha\":\"Senha@123\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/usuarios",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "usuarios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"usuario@careplus.com\",\"senha\":\"NovaSenha@123\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/usuarios/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ativar Sessão",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/usuarios/1/ativar-sessao",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "1",
+                "ativar-sessao"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Desativar Sessão",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/usuarios/1/desativar-sessao",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "1",
+                "desativar-sessao"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deletar",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/usuarios/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🏥 Pacientes",
+      "item": [
+        {
+          "name": "Listar Todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pacientes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pacientes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pacientes/{{pacienteId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pacientes",
+                "{{pacienteId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por CPF",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pacientes/cpf/12345678901",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pacientes",
+                "cpf",
+                "12345678901"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nome\":\"João Silva\",\"cpf\":\"12345678901\",\"email\":\"joao@email.com\",\"dataNascimento\":\"1990-01-15\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/pacientes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pacientes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nome\":\"João Silva Atualizado\",\"cpf\":\"12345678901\",\"email\":\"joao@email.com\",\"dataNascimento\":\"1990-01-15\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/pacientes/{{pacienteId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pacientes",
+                "{{pacienteId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deletar",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pacientes/{{pacienteId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pacientes",
+                "{{pacienteId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🍎 Alimentos",
+      "item": [
+        {
+          "name": "Listar Todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/foods",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "foods"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/foods/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "foods",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por Nome Exato",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/foods/nome/Arroz",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "foods",
+                "nome",
+                "Arroz"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por Nome (parcial)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "?nome=arr",
+              "query": [
+                {
+                  "key": "nome",
+                  "value": "arr"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Arroz Branco\",\"calories\":130,\"protein\":2.7,\"carbohydrates\":28.2,\"fat\":0.3}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/foods",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "foods"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Arroz Branco Cozido\",\"calories\":128,\"protein\":2.5,\"carbohydrates\":28.0,\"fat\":0.2}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/foods/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "foods",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deletar",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/foods/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "foods",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🍽️ Refeições",
+      "item": [
+        {
+          "name": "Listar Todas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/meals",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meals"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/meals/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meals",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por Paciente",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/meals/paciente/{{pacienteId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meals",
+                "paciente",
+                "{{pacienteId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar Presets do Paciente",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/meals/paciente/{{pacienteId}}/presets",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meals",
+                "paciente",
+                "{{pacienteId}}",
+                "presets"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por Paciente e Período",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "?dataInicio=2024-01-01T00:00:00&dataFim=2024-12-31T23:59:59",
+              "query": [
+                {
+                  "key": "dataInicio",
+                  "value": "2024-01-01T00:00:00"
+                },
+                {
+                  "key": "dataFim",
+                  "value": "2024-12-31T23:59:59"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Refeição Customizada",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Almoço Saudável\",\"items\":[{\"foodName\":\"Arroz\",\"quantity\":150},{\"foodName\":\"Feijão\",\"quantity\":100}]}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/meals/paciente/{{pacienteId}}/custom",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meals",
+                "paciente",
+                "{{pacienteId}}",
+                "custom"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Preset de Refeição",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"AlmocoBase\",\"items\":[{\"foodName\":\"Arroz\",\"quantity\":150},{\"foodName\":\"Feijão\",\"quantity\":100}]}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/meals/paciente/{{pacienteId}}/preset/AlmocoBase",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meals",
+                "paciente",
+                "{{pacienteId}}",
+                "preset",
+                "AlmocoBase"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Almoço Atualizado\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/meals/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meals",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deletar",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/meals/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meals",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🥗 Itens de Refeição",
+      "item": [
+        {
+          "name": "Listar Todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/meal-items",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meal-items"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/meal-items/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meal-items",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por Refeição",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/meal-items/refeicao/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meal-items",
+                "refeicao",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por Alimento",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/meal-items/alimento/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meal-items",
+                "alimento",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por Refeição e Alimento",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/meal-items/refeicao/1/alimento/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meal-items",
+                "refeicao",
+                "1",
+                "alimento",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Item",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"refeicaoId\":1,\"alimentoId\":1,\"quantidade\":150.0}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/meal-items",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meal-items"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar Item",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"refeicaoId\":1,\"alimentoId\":1,\"quantidade\":200.0}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/meal-items/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meal-items",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar Quantidade",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "?quantidade=180.0",
+              "query": [
+                {
+                  "key": "quantidade",
+                  "value": "180.0"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deletar Item",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/meal-items/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meal-items",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deletar Itens da Refeição",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/meal-items/refeicao/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meal-items",
+                "refeicao",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "📋 Planos Alimentares",
+      "item": [
+        {
+          "name": "Listar Todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/diet-plans",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "diet-plans"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/diet-plans/{{planoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "diet-plans",
+                "{{planoId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por Paciente",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/diet-plans/paciente/{{pacienteId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "diet-plans",
+                "paciente",
+                "{{pacienteId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por Paciente e Período",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "?dataInicio=2024-01-01&dataFim=2024-12-31",
+              "query": [
+                {
+                  "key": "dataInicio",
+                  "value": "2024-01-01"
+                },
+                {
+                  "key": "dataFim",
+                  "value": "2024-12-31"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar Planos Ativos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "?data=2024-06-01",
+              "query": [
+                {
+                  "key": "data",
+                  "value": "2024-06-01"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Plano",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Plano Emagrecimento\",\"startDate\":\"2024-06-01\",\"endDate\":\"2024-08-31\",\"goal\":\"Perder 5kg\",\"dailyCalories\":1800}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/diet-plans/paciente/{{pacienteId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "diet-plans",
+                "paciente",
+                "{{pacienteId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Planejar Refeição com Preset",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "?pacienteId={{pacienteId}}&presetMealId=1&dataPlanejada=2024-06-10&tipoRefeicao=ALMOCO",
+              "query": [
+                {
+                  "key": "pacienteId",
+                  "value": "{{pacienteId}}"
+                },
+                {
+                  "key": "presetMealId",
+                  "value": "1"
+                },
+                {
+                  "key": "dataPlanejada",
+                  "value": "2024-06-10"
+                },
+                {
+                  "key": "tipoRefeicao",
+                  "value": "ALMOCO"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Planejar Refeição Customizada",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Jantar Leve\",\"items\":[{\"foodName\":\"Frango\",\"quantity\":200},{\"foodName\":\"Salada\",\"quantity\":100}]}"
+            },
+            "url": {
+              "raw": "?pacienteId={{pacienteId}}&dataPlanejada=2024-06-10&tipoRefeicao=JANTAR",
+              "query": [
+                {
+                  "key": "pacienteId",
+                  "value": "{{pacienteId}}"
+                },
+                {
+                  "key": "dataPlanejada",
+                  "value": "2024-06-10"
+                },
+                {
+                  "key": "tipoRefeicao",
+                  "value": "JANTAR"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar Plano",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Plano Atualizado\",\"startDate\":\"2024-06-01\",\"endDate\":\"2024-09-30\",\"goal\":\"Perder 7kg\",\"dailyCalories\":1700}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/diet-plans/{{planoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "diet-plans",
+                "{{planoId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deletar Plano",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/diet-plans/{{planoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "diet-plans",
+                "{{planoId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "📅 Refeições Planejadas",
+      "item": [
+        {
+          "name": "Listar Todas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/planned-meals",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "planned-meals"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/planned-meals/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "planned-meals",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por Plano",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/planned-meals/plano/{{planoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "planned-meals",
+                "plano",
+                "{{planoId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por Paciente",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/planned-meals/paciente/{{pacienteId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "planned-meals",
+                "paciente",
+                "{{pacienteId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por Paciente e Data",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "?data=2024-06-10",
+              "query": [
+                {
+                  "key": "data",
+                  "value": "2024-06-10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por Paciente e Período",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "?dataInicio=2024-06-01&dataFim=2024-06-30",
+              "query": [
+                {
+                  "key": "dataInicio",
+                  "value": "2024-06-01"
+                },
+                {
+                  "key": "dataFim",
+                  "value": "2024-06-30"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por Tipo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/planned-meals/tipo/ALMOCO",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "planned-meals",
+                "tipo",
+                "ALMOCO"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Refeição Planejada",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"planoId\":1,\"refeicaoId\":1,\"dataPlanejada\":\"2024-06-10\",\"tipoRefeicao\":\"ALMOCO\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/planned-meals",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "planned-meals"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"planoId\":1,\"refeicaoId\":2,\"dataPlanejada\":\"2024-06-11\",\"tipoRefeicao\":\"JANTAR\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/planned-meals/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "planned-meals",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deletar",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/planned-meals/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "planned-meals",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deletar por Plano",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/planned-meals/plano/{{planoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "planned-meals",
+                "plano",
+                "{{planoId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "📊 Logs de Consumo",
+      "item": [
+        {
+          "name": "Listar Todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/food-logs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "food-logs"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/food-logs/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "food-logs",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por Paciente",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/food-logs/paciente/{{pacienteId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "food-logs",
+                "paciente",
+                "{{pacienteId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por Paciente e Período",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "?dataInicio=2024-06-01T00:00:00&dataFim=2024-06-30T23:59:59",
+              "query": [
+                {
+                  "key": "dataInicio",
+                  "value": "2024-06-01T00:00:00"
+                },
+                {
+                  "key": "dataFim",
+                  "value": "2024-06-30T23:59:59"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por Data Específica",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "?data=2024-06-10T00:00:00",
+              "query": [
+                {
+                  "key": "data",
+                  "value": "2024-06-10T00:00:00"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar Planejados",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/food-logs/paciente/{{pacienteId}}/planejados",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "food-logs",
+                "paciente",
+                "{{pacienteId}}",
+                "planejados"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Total Calorias do Dia",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "?data=2024-06-10T00:00:00",
+              "query": [
+                {
+                  "key": "data",
+                  "value": "2024-06-10T00:00:00"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Registrar Consumo (PRESET)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"tipo\":\"PRESET\",\"mealId\":1,\"foodId\":1,\"quantity\":150.0}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/food-logs/paciente/{{pacienteId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "food-logs",
+                "paciente",
+                "{{pacienteId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Registrar Consumo (CUSTOM)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"tipo\":\"CUSTOM\",\"customMeal\":{\"name\":\"Lanche da tarde\",\"items\":[{\"foodName\":\"Banana\",\"quantity\":100}]}}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/food-logs/paciente/{{pacienteId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "food-logs",
+                "paciente",
+                "{{pacienteId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Registrar Consumo (DIRETO)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"tipo\":\"DIRETO\",\"foodId\":1,\"quantity\":200.0}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/food-logs/paciente/{{pacienteId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "food-logs",
+                "paciente",
+                "{{pacienteId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar Quantidade",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "?newQuantity=180.0",
+              "query": [
+                {
+                  "key": "newQuantity",
+                  "value": "180.0"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deletar",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/food-logs/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "food-logs",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🔧 Utilitários",
+      "item": [
+        {
+          "name": "Popular Banco",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/utils/popular-banco",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "utils",
+                "popular-banco"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Gerar Hash BCrypt",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"senha\":\"MinhasSenha@123\"}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/utils/bcrypt",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "utils",
+                "bcrypt"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "pacienteId",
+      "value": "1"
+    },
+    {
+      "key": "planoId",
+      "value": "1"
+    }
+  ]
+}
