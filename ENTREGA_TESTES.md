@@ -14,7 +14,7 @@ postman/CarePlus_API_Tests.postman_collection.json
 
 ## Vídeo de execução dos testes
 Link do vídeo:
-https://youtu.be/KE4HcKtJjkg
+https://youtu.be/OjOM4Mf34rI
 
 ## Observações
 A API foi testada localmente em:
